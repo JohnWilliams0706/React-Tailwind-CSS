@@ -1,9 +1,8 @@
-Please send me your feedback description!!
-then I will give u feedback
+I understood what you want.
 
-I just checked your description.
+I have a way better for us.
 
-If you are okay, could you complete the project?
+I will let you know asap. So, we can first complete our first project and discuss more.
 
 
 # Getting Started with Create React App
