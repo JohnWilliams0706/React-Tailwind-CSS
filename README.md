@@ -1,6 +1,10 @@
 Please send me your feedback description!!
 then I will give u feedback
 
+I just checked your description.
+
+If you are okay, could you complete the project?
+
 
 # Getting Started with Create React App
 
