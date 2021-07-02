@@ -1,8 +1,4 @@
-I understood what you want.
 
-I have a way better for us.
-
-I will let you know asap. So, we can first complete our first project and discuss more.
 
 
 # Getting Started with Create React App
