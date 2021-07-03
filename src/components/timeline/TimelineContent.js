@@ -3,14 +3,15 @@ import TimelineAvatar from "./TimelineAvatar";
 import TimelineEvent, { daySecond, getTodayOffset } from "./TimelineEvent";
 
 export const filterEventByToday = (event, zeroPoint) => {
-  const now = new Date().getTime() / 1000 - getTodayOffset(new Date());
+  // const now = new Date().getTime() / 1000 - getTodayOffset(new Date());
+  const zeroLevel = new Date().getTime() / 1000 + zeroPoint * 3600;
   if (event.started) {
-    if (event.started > now + daySecond) {
+    if (event.started > zeroLevel + (daySecond * 2) / 3) {
       return false;
     }
   }
   if (event.ended) {
-    if (event.ended < now) {
+    if (event.ended < zeroLevel - daySecond / 3) {
       return false;
     }
   }
