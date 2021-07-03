@@ -18,6 +18,17 @@ export default function Timeline({ title = '', data = [], ...props }) {
     }
   }
 
+  const initScroll = () => {
+    refScroller.current.scrollLeft =
+      Number(refScroller?.current?.scrollWidth) / 3 - window.innerWidth / 3
+  }
+
+  useEffect(() => {
+    if (typeof refScroller?.current?.scrollLeft === 'number') {
+      initScroll()
+    }
+  }, [refScroller])
+
   useEffect(() => {
     setInterval(() => {
       setZeroPoint((new Date().getHours() + 24 - 8) % 24)
