@@ -6,12 +6,12 @@ export const filterEventByToday = (event, zeroPoint) => {
   // const now = new Date().getTime() / 1000 - getTodayOffset(new Date());
   const zeroLevel = new Date().getTime() / 1000 + zeroPoint * 3600;
   if (event.started) {
-    if (event.started > zeroLevel + (daySecond * 2) / 3) {
+    if (event.started > zeroLevel + daySecond) {
       return false;
     }
   }
   if (event.ended) {
-    if (event.ended < zeroLevel - daySecond / 3) {
+    if (event.ended < zeroLevel) {
       return false;
     }
   }
