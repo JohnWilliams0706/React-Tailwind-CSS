@@ -26,7 +26,6 @@ export default function TimelineContent({
   ...props
 }) {
   const events = data?.Priority2Creator?.contents?.items ?? [];
-
   return (
     <div className="h-16 flex flex-row my-2 relative">
       <div className="w-18 sm:w-28 fixed z-20 h-16 flex flex-row justify-start bg-event-content">
@@ -45,7 +44,12 @@ export default function TimelineContent({
         {(events ?? [])
           .filter((item) => filterEventByToday(item, zeroPoint))
           .map((item, index) => (
-            <TimelineEvent key={index} unit={unit} data={item} />
+            <TimelineEvent
+              key={index}
+              unit={unit}
+              data={item}
+              zeroPoint={zeroPoint}
+            />
           ))}
       </div>
     </div>

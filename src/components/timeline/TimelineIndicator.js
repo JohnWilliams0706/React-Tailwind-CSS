@@ -1,5 +1,5 @@
-import React from 'react'
-import { daySecond } from './TimelineEvent'
+import React from "react";
+import { daySecond } from "./TimelineEvent";
 
 export default function TimelineIndicator({
   unit = 128,
@@ -7,12 +7,12 @@ export default function TimelineIndicator({
   zeroPoint = 0,
   ...props
 }) {
-  const fullWidth = unit * 24
-  const now = new Date()
+  const fullWidth = unit * 24;
+  const now = new Date();
   const currentTime =
     ((now.getHours() + 24 - zeroPoint) % 24) * 3600 +
     now.getMinutes() * 60 +
-    now.getSeconds()
+    now.getSeconds();
   return (
     <>
       <div
@@ -61,5 +61,5 @@ export default function TimelineIndicator({
         </div>
       </div>
     </>
-  )
+  );
 }

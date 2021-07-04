@@ -7,7 +7,13 @@ export const getTodayOffset = (date = new Date()) => {
   return date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
 };
 
-export default function TimelineEvent({ unit = 128, data, ...props }) {
+export default function TimelineEvent({
+  unit = 128,
+  data,
+  zeroPoint,
+  ...props
+}) {
+  const startPosition = zeroPoint * 3600;
   const fullWidth = unit * 24;
 
   // calc time
@@ -33,22 +39,22 @@ export default function TimelineEvent({ unit = 128, data, ...props }) {
       style={
         Number(eventType) === 1
           ? {
-              left: (fullWidth * start) / daySecond,
+              left: (fullWidth * (start - startPosition)) / daySecond,
               width: (fullWidth * (end - start)) / daySecond,
               flexBasis: (fullWidth * (end - start)) / daySecond,
             }
           : eventType === 2
           ? {
-              left: (fullWidth * start) / daySecond - 64,
+              left: (fullWidth * (start - startPosition)) / daySecond - 64,
               width: (fullWidth * (end - start)) / daySecond,
               flexBasis: (fullWidth * (end - start)) / daySecond,
             }
           : eventType === 3
           ? {
-              left: (fullWidth * start) / daySecond,
+              left: (fullWidth * (start - startPosition)) / daySecond,
             }
           : {
-              left: (fullWidth * start) / daySecond,
+              left: (fullWidth * (start - startPosition)) / daySecond,
             }
       }
     >
