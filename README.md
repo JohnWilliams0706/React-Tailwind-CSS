@@ -7,6 +7,14 @@ Would hire again and recommend him to everyone.
 
 How about?
 
+Thank you very much
+Maybe, like this....
+
+Great work and Excellent communication, Good understanding.
+The task was very complex, but he completed correctly in time.
+Would hire again and recommend him to everyone.
+
+How about?
 
 # Getting Started with Create React App
 
