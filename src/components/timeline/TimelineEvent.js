@@ -17,10 +17,29 @@ export default function TimelineEvent({
   const fullWidth = unit * 24;
 
   // calc time
-  const startedDate = new Date(data?.started * 1000);
-  const endedDate = new Date(data?.ended * 1000);
-  const start = getTodayOffset(startedDate);
-  const end = getTodayOffset(endedDate);
+  let startedDate = new Date(data?.started * 1000);
+  let endedDate = new Date(data?.ended * 1000);
+  let start = getTodayOffset(startedDate);
+  let end = getTodayOffset(endedDate);
+  let widthCnt = 0;
+  if (end - start < 0) {
+    widthCnt = daySecond - (start - end);
+  } else {
+    widthCnt = end - start;
+  }
+
+  let _left = (fullWidth * (start - startPosition)) / daySecond;
+  let _width = (fullWidth * widthCnt) / daySecond;
+
+  if (_left + _width > fullWidth) {
+    _width = fullWidth - _left;
+  }
+
+  if (start < startPosition) {
+    start = startPosition;
+    _left = 0;
+    _width = fullWidth - (fullWidth * (startPosition - end)) / daySecond;
+  }
 
   // calc event type
   const border = data?.type === "PLANNED";
@@ -39,15 +58,15 @@ export default function TimelineEvent({
       style={
         Number(eventType) === 1
           ? {
-              left: (fullWidth * (start - startPosition)) / daySecond,
-              width: (fullWidth * (end - start)) / daySecond,
-              flexBasis: (fullWidth * (end - start)) / daySecond,
+              left: _left,
+              width: _width,
+              flexBasis: _width,
             }
           : eventType === 2
           ? {
-              left: (fullWidth * (start - startPosition)) / daySecond - 64,
-              width: (fullWidth * (end - start)) / daySecond,
-              flexBasis: (fullWidth * (end - start)) / daySecond,
+              left: _left - 64,
+              width: _width,
+              flexBasis: _width,
             }
           : eventType === 3
           ? {
