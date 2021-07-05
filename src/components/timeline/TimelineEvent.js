@@ -21,6 +21,7 @@ export default function TimelineEvent({
   let endedDate = new Date(data?.ended * 1000);
   let start = getTodayOffset(startedDate);
   let end = getTodayOffset(endedDate);
+  let style = {};
   let widthCnt = 0;
   if (end - start < 0) {
     widthCnt = daySecond - (start - end);
@@ -33,12 +34,22 @@ export default function TimelineEvent({
 
   if (_left + _width > fullWidth) {
     _width = fullWidth - _left;
+    style = {
+      "border-right": none,
+      "border-top-right-radius": 0,
+      "border-bottom-right-radius": 0,
+    };
   }
 
   if (start < startPosition) {
     start = startPosition;
     _left = 0;
     _width = fullWidth - (fullWidth * (startPosition - end)) / daySecond;
+    style = {
+      "border-left": none,
+      "border-top-left-radius": 0,
+      "border-bottom-left-radius": 0,
+    };
   }
 
   // calc event type
@@ -78,11 +89,15 @@ export default function TimelineEvent({
       }
     >
       {Boolean(eventType === 2) && (
-        <div className="w-16 bg-gradient-to-r from-transparent via-event-dark to-event-dark border-0">
+        <div
+          style={{ ...style }}
+          className="w-16 bg-gradient-to-r from-transparent via-event-dark to-event-dark border-0"
+        >
           &nbsp;
         </div>
       )}
       <div
+        style={{ ...style }}
         className={`px-2 w-full flex flex-col justify-around bg-event-dark cursor-pointer overflow-x-hidden z-10 ${
           eventType === 2 // both grad
             ? "rounded-none border-0"
