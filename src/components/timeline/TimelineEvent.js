@@ -34,22 +34,12 @@ export default function TimelineEvent({
 
   if (_left + _width > fullWidth) {
     _width = fullWidth - _left;
-    style = {
-      "border-right": none,
-      "border-top-right-radius": 0,
-      "border-bottom-right-radius": 0,
-    };
   }
 
   if (start < startPosition) {
     start = startPosition;
     _left = 0;
     _width = fullWidth - (fullWidth * (startPosition - end)) / daySecond;
-    style = {
-      "border-left": none,
-      "border-top-left-radius": 0,
-      "border-bottom-left-radius": 0,
-    };
   }
 
   // calc event type
@@ -63,9 +53,13 @@ export default function TimelineEvent({
       ? 3
       : 4;
 
+  const borderClasses = `${
+    Boolean(_left + _width >= fullWidth) ? "border-r-0 rounded-r-none" : ""
+  } ${Boolean(start <= startPosition) ? "border-l-0 rounded-l-none" : ""}`;
+
   return (
     <div
-      className="flex flex-row absolute h-16 flex-shrink-0 flex-grow-0 whitespace-nowrap overflow-hidden"
+      className={`flex flex-row absolute h-16 flex-shrink-0 flex-grow-0 whitespace-nowrap overflow-hidden`}
       style={
         Number(eventType) === 1
           ? {
@@ -90,26 +84,26 @@ export default function TimelineEvent({
     >
       {Boolean(eventType === 2) && (
         <div
-          style={{ ...style }}
-          className="w-16 bg-gradient-to-r from-transparent via-event-dark to-event-dark border-0"
+          className={`w-16 bg-gradient-to-r from-transparent via-event-dark to-event-dark border-0 ${borderClasses}`}
         >
           &nbsp;
         </div>
       )}
       <div
-        style={{ ...style }}
         className={`px-2 w-full flex flex-col justify-around bg-event-dark cursor-pointer overflow-x-hidden z-10 ${
           eventType === 2 // both grad
             ? "rounded-none border-0"
             : eventType === 3 // right grad
             ? "rounded-l-lg"
             : "rounded-lg border-2"
-        } ${Boolean(border) ? "border-red-600" : "border-transparent"}`}
+        } ${
+          Boolean(border) ? "border-red-600" : "border-transparent"
+        } ${borderClasses}`}
       >
         <div
           className={`font-bold w-full overflow-hidden text-sm  ${
             Boolean(!border) ? "text-white" : ""
-          }  `}
+          }`}
         >
           {data?.title ?? ""}
         </div>
