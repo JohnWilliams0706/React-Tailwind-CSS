@@ -4,7 +4,7 @@ import TimelineEvent, { daySecond, getTodayOffset } from "./TimelineEvent";
 
 export const filterEventByToday = (event, zeroPoint) => {
   // const now = new Date().getTime() / 1000 - getTodayOffset(new Date());
-  const zeroLevel = new Date().getTime() / 1000 + zeroPoint * 3600;
+  const zeroLevel = new Date().getTime() / 1000 - (8 - zeroPoint) * 3600;
   if (event.started) {
     if (event.started > zeroLevel + daySecond) {
       return false;
