@@ -1,3 +1,8 @@
+Great Work!.
+Task was very difficult but he completed perfectly without lots of description.
+He kept good communication so we can work easily.
+I recommend him for any project. I would hire him again
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
